@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit(fm)" #fm=ngForm>
+  <div class="form-group">
+    <label for="title">Titolo del libro:</label>
+    <input type="text" class="form-control" ngModel name="title">
+  </div>
+  <div class="form-group">
+    <label for="author">Autore del libro:</label>
+    <input type="text" class="form-control" ngModel name="author">
+  </div>
+  <div class="form-group">
+    <label for="price">Prezzo del libro:</label>
+    <input type="text" class="form-control" ngModel name="price">
+  </div>
+  <button type="submit" class="btn btn-primary">Aggiungi nuovo libro</button>
+</form>
