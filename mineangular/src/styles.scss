@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .wrapper{
+  overflow-x: hidden;
   header{
     nav a {
       color:white;
@@ -37,5 +38,10 @@ main{
     text-decoration: none;
     color:#fff;
   }
+}
+footer{
+  padding:20px;
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 68%, rgba(36,38,62,1) 100%, rgba(36,38,62,1) 100%);
 }
 }

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './form/form.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UformComponent } from './uform/uform.component'; //questo deve essere importato anche qui
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { UformComponent } from './uform/uform.component'; //questo deve essere i
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FontAwesomeModule,
     FormsModule
   ],
   providers: [{provide : LOCALE_ID,useValue:'it'},{provide: DEFAULT_CURRENCY_CODE,useValue:'EUR'
