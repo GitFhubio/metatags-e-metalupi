@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+.wrapper{
+  header{
+    nav a {
+      color:white;
+    }
+    .dropdown-menu{
+      background-color: red;
+    }
+    min-height: 600px;
+    background-image: url('https://images4.alphacoders.com/104/thumb-1920-1047181.jpg');
+    background-repeat: no-repeat;
+    background-position:0% 50%;
+    background-size: cover;
+
+  }
+  .navbar-brand {
+    img {
+    height:50px;
+    width: auto;
+  }
+  span{
+    text-shadow: green 1px 2px 5px;
+  }
+}
+footer {
+  width:100%;
+}
+#navbarNav{
+  margin-left: 50px;
+}
+main{
+  padding:20px;
+}
+#custom-cards{
+  .btn-warning a{
+    text-decoration: none;
+    color:#fff;
+  }
+}
+}
