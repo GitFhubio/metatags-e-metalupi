@@ -24,3 +24,4 @@ Route::group(['middleware' => 'CORS'], function () {
 });
 
 Route::resource('bookz', 'BookController', ['only' => ['index','create','show']]);
+Route::get('/books/{title?}', 'Api\ApiController@filtered');

@@ -30,8 +30,8 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" #bookTitle placeholder="Search" aria-label="Search">
+          <button (click)="searchBook(bookTitle)" class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -51,6 +51,9 @@
 <main>
 <router-outlet>
 </router-outlet>
+<!-- <div>nel app component:prova
+<div *ngFor="let book of filteredBooks" >{{book.title}}</div>
+</div> -->
 </main>
 <footer class="bg-dark text-center text-white">
   <!-- Grid container -->

@@ -16,7 +16,17 @@ downloadBook(id:string|null) {
   return this.http.get<Book>('http://127.0.0.1:8000/api/bookz/'+id);
 }
 
+filterBook(title:string) {
+ return this.http.get<Book[]>('http://127.0.0.1:8000/api/books/'+title);
+}
+
 deleteBook(book:Book): Observable<any> {
   return this.http.delete('http://127.0.0.1:8000/api/bookz/'+book.id, {headers: this.headers});
+}
+private books = new Subject<Book[]>();
+booksFiltered$= this.books.asObservable();
+
+newBookList(booksList:Book[]){
+this.books.next(booksList);
 }
 }
