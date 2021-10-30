@@ -8,13 +8,13 @@ import { faGithub,faFacebook, faTwitter,faLinkedin,faInstagram } from '@fortawes
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title='mineangular';
 
   faTwitter = faTwitter;
   faFacebook = faFacebook;
   faInstagram= faInstagram;
   faLinkedin= faLinkedin;
   faGithub=faGithub;
-  title='mineangular';
   constructor(public router:Router){
     this.router.events.subscribe((e) => {
     if(e instanceof NavigationEnd){

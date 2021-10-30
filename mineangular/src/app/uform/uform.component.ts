@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MainService } from '../mainservice.service';
 import { Book } from '../models/book.model';
@@ -14,7 +15,10 @@ export class UformComponent implements OnInit {
   updatingId:string|null='';
   book:Book=new Book();
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor(public route:ActivatedRoute, public mservice:MainService,private _http: HttpClient) {
+  constructor(public route:ActivatedRoute, public mservice:MainService,private _http: HttpClient,private title:Title, private meta:Meta) {
+    this.title.setTitle("Updating form");
+    this.meta.updateTag({name:'description',content:"questa è la pagina di update"});
+    this.meta.updateTag({name:'keywords',content:"update,aggiornamento"});
     this.route.paramMap.subscribe((params:ParamMap)=>{
       this.updatingId=params.get('id');
     })

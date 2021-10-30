@@ -1,15 +1,21 @@
-<form (ngSubmit)="onSubmit(fm)" #fm=ngForm>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
   <div class="form-group">
     <label for="title">Titolo del libro:</label>
-    <input type="text" class="form-control" ngModel name="title">
+    <input type="text" (input)="checkString('title')" class="form-control" formControlName="title">
+    <!-- ngModel name="title" -->
   </div>
   <div class="form-group">
     <label for="author">Autore del libro:</label>
-    <input type="text" class="form-control" ngModel name="author">
+    <input type="text" (input)="checkString('author')" class="form-control" formControlName="author">
+    <span *ngIf="form.controls.author.errors?.incorrect">
+   La lunghezza dell'autore non può superare i 250 caratteri
+  </span>
   </div>
   <div class="form-group">
     <label for="price">Prezzo del libro:</label>
-    <input type="text" class="form-control" ngModel name="price">
+    <input type="text" (input)="checkNumber()" class="form-control" formControlName="price">
   </div>
   <button type="submit" class="btn btn-primary">Aggiungi nuovo libro</button>
 </form>
+
+<p *ngIf="error">Tutti i campi sono obbligatori</p>
