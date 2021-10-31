@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { faGithub,faFacebook, faTwitter,faLinkedin,faInstagram } from '@fortawesome/free-brands-svg-icons';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
 import { MainService } from './mainservice.service';
 import { Book } from './models/book.model';
 
@@ -14,6 +15,7 @@ export class AppComponent {
   filteredBooks:Book[]=[];
   faTwitter = faTwitter;
   faFacebook = faFacebook;
+  faHamburger = faBars;
   faInstagram= faInstagram;
   faLinkedin= faLinkedin;
   faGithub=faGithub;

@@ -6,7 +6,7 @@
   <div class="container-fluid px-4 py-5" id="custom-cards">
     <h2 class="pb-2 border-bottom">Disponibili nel nostro store</h2>
 
-    <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 align-items-stretch g-4 py-5">
       <div *ngFor="let book of filteredBooks" class="col">
       <!-- <div *ngFor="let book of books" class="col"> metodo precedente -->
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('');">
@@ -17,11 +17,9 @@
                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
               </li>
               <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
                 <button class="btn btn-warning"><a href="javascript:void(0)" [routerLink]="['/update',book.id]">Update</a></button>
               </li>
               <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
                 <button class="btn btn-danger" (click)="delete(book)">Delete</button>
               </li>
             </ul>

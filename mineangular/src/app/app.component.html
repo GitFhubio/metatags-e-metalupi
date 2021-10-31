@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="https://freesvg.org/img/1527134288.png" alt=""><span>YBP</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon d-flex align-items-center justify-content-center"><fa-icon [icon]="faHamburger"></fa-icon></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -25,13 +25,10 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" #bookTitle placeholder="Search" aria-label="Search">
-          <button (click)="searchBook(bookTitle)" class="btn btn-outline-success" type="submit">Search</button>
+          <button (click)="searchBook(bookTitle)" class="btn btn-outline-success searchButton" type="submit">Search</button>
         </form>
       </div>
     </div>
@@ -39,7 +36,7 @@
   <div class="hero-section px-4 py-5 my-5 text-center">
     <!-- <img class="d-block mx-auto mb-4" alt="" width="auto" height="90"> -->
     <h1 class="display-5 py-5 fw-bold">You Book Perfect</h1>
-    <div class="col-lg-6 mx-auto">
+    <div class="col-lg-10 mx-auto">
       <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>

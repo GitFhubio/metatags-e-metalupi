@@ -9,11 +9,23 @@
       background-color: red;
     }
     min-height: 600px;
-    background-image: url('https://images4.alphacoders.com/104/thumb-1920-1047181.jpg');
+    background:radial-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url('https://images4.alphacoders.com/104/thumb-1920-1047181.jpg');
     background-repeat: no-repeat;
     background-position:0% 50%;
     background-size: cover;
+    .navbar-toggler{
+color:#fff;
+    }
+    .searchButton{
+      margin-top:0;
+      // &:hover{
 
+      // }
+      // @media only screen and (max-width: 990px) {
+      //    background-color:#5cb85c;
+      //    color:#fff;
+      // }
+    }
   }
   .navbar-brand {
     img {
