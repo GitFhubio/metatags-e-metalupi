@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { Book } from '../models/book.model';
-
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,6 +10,8 @@ import { Book } from '../models/book.model';
 })
 export class FormComponent {
   form : FormGroup;
+  fileName:string = 'Choose file...';
+  file: any|null;
   error:boolean = false;
   constructor(private _http: HttpClient,private title:Title, private meta:Meta,public fb: FormBuilder){
     this.title.setTitle("Creation form");
@@ -20,27 +21,29 @@ export class FormComponent {
       'title':['',Validators.required],
       'author':['',Validators.required],
       'price':['',Validators.required],
+      'file':[''],
     })
   }
-  private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  // onSubmit(form: NgForm){
-  // 	console.log(form.value);
-  // }
-//   onSubmit(): Promise <Book>{
-//     return this._http.post('http://127.0.0.1:8000/api/bookz', JSON.stringify(this.form.value), {headers: this.headers})
-//      .toPromise()
-//              .then(res => res)
-//               .catch(this.handleError);
-// }
-
-// private handleError(error: any): Promise<any> {
-// return Promise.reject(error.message || error);
-// }
-
+  // private headers = new HttpHeaders({'Content-Type': 'application/json'})
+  // private headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data'}) //da problemi,
+  //non metto headers con multipart form data
+onFileSelect(e:any) {
+  this.fileName = e.target.files[0].name;
+  this.file = e.target.files[0];
+  console.log(this.fileName,this.file);
+}
 onSubmit(){
+  const formData: FormData = new FormData();
+  console.log(this.file);
+  formData.append('myform',JSON.stringify(this.form.value));
+  if(this.file!= null){
+  formData.append('image', this.file,this.fileName);
+  }
   if (this.form.valid){
     this.error=false;
-  return this._http.post('http://127.0.0.1:8000/api/bookz', JSON.stringify(this.form.value), {headers: this.headers}).subscribe();
+  return this._http.post('http://127.0.0.1:8000/api/bookz',formData).subscribe((res)=>console.log(res),
+  (err) => console.log(err));
+
 } else{
    this.error=true;
   return;

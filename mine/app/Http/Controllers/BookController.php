@@ -36,11 +36,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+
         $data=$request->all();
         $book= new Book();
-        $book->fill($data);
+        $book->title=json_decode($data['myform'],true)['title'];
+        $book->author=json_decode($data['myform'],true)['author'];
+        $book->price=json_decode($data['myform'],true)['price'];
+        if($request->file('image')){
+            $book->img = $request->file('image')->store('images');
+        }
         $book->save();
-        return response()->json('Successfully added');
+        return response()->json('success');
         // return redirect()->route('offers.index');
     }
 
@@ -77,8 +83,16 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $data= $request->all();
-        $book=Book::find($id);
-        $book->update($data);
+       $book=Book::find($id);
+       $book->title=json_decode($data['myform'],true)['title'];
+        $book->author=json_decode($data['myform'],true)['author'];
+         $book->price=json_decode($data['myform'],true)['price'];
+        if($request->file('image')){
+         $book->img = $request->file('image')->store('images');
+         }
+        $book->save();
+
+        // $book->update($data);
     }
 
     /**
