@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { faGithub,faFacebook, faTwitter,faLinkedin,faInstagram } from '@fortawesome/free-brands-svg-icons';
@@ -19,7 +20,7 @@ export class AppComponent {
   faInstagram= faInstagram;
   faLinkedin= faLinkedin;
   faGithub=faGithub;
-  constructor(public router:Router,public mservice:MainService){
+  constructor(private _http: HttpClient,public router:Router,public mservice:MainService){
     this.router.events.subscribe((e) => {
     if(e instanceof NavigationEnd){
       window.scrollTo(0,0);
@@ -38,8 +39,6 @@ export class AppComponent {
   })
 
 }
-
-
  searchBook(title:HTMLInputElement){
 
       this.mservice.filterBook(title.value).subscribe(res => {this.filteredBooks=res;

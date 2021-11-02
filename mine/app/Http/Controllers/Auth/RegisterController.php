@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class RegisterController extends Controller
 {
@@ -70,4 +72,31 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+// for angular api
+    public function postRegister(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:users,email',
+            'name' => 'required|min:2',
+            'password' =>'required|min:8'
+        ]);
+        if ($validator->fails()) {
+            $message = ['errors' => $validator->errors()];
+            return  Response::json($message, 202);
+        } else {
+            $user = new User(array(
+                'email' => trim($request->email),
+                'name' => trim($request->name),
+                'password' => bcrypt($request->password),
+            ));
+            $user->save();
+            $message = 'The user has been created successfully';
+            $response = Response::json([
+                'message' => $message,
+                'user' => $user,
+            ], 201);
+        }
+        return $response;
+    }
+
 }

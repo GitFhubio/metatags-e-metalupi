@@ -19,9 +19,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Route::get('/books', 'Api\ApiController@books');
+// ['prefix' => 'v1'] , la rotta diventerebbe api/v1
 Route::group(['middleware' => 'CORS'], function () {
+    Route::resource('users', UserController::class);
     Route::resource('bookz', 'BookController', ['except' => ['index','create','show']]);
 });
 
 Route::resource('bookz', 'BookController', ['only' => ['index','create','show']]);
 Route::get('/books/{title?}', 'Api\ApiController@filtered');
+
+Route::group(['middleware' => 'CORS'], function(){
+    Route::resource('users', UserController::class);
+    Route::post('/login', 'Auth\LoginController@login');
+    Route::post('/register', 'Auth\RegisterController@postRegister');
+});
+
