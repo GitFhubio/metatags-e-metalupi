@@ -8,7 +8,7 @@
             <h4 class="list-group-item-heading"><span class="fa fa-user"></span> Manage User</h4>
           </div> -->
           <div class="row-content">
-            <a [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
+            <a *ngIf="this.mservice.role == 'admin'" [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
             <a [routerLink]="['/admin/create-book']"><button class="btn btn-danger">Inserisci nuovo libro</button></a>
             <a [routerLink]="['/']"><button class="btn btn-danger">Vai alla lista libri</button></a>
             <!-- <a [routerLink]="['/admin/users/create']" class="btn btn-primary">New User</a> -->

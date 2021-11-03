@@ -52,6 +52,13 @@ class LoginController extends Controller
     'password.required' => 'Please Enter Your Password',
 
     ]);
+    switch($request->email){
+       case 'admin@outlook.it':
+        $request->role='admin';
+        break;
+       default:
+       $request->role='user';
+    }
     if ($validator->fails()) {
         $message = ['errors' => $validator->errors()];
                 return  Response::json($message, 202);
@@ -61,7 +68,7 @@ class LoginController extends Controller
             $token = JWTAuth::attempt($credentials);
             if ($token) {
                 $message = ['success' => $token];
-                return Response::json(["token" => $token], 200);
+                return Response::json(["token" => $token, "role"=>$request->role], 200);
             } else {
                 $message = ['errors' => "Invalid credentials"];
                 return  Response::json($message, 202);

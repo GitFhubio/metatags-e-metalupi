@@ -11,6 +11,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 })
 export class MainService{
   token: string='';
+  role: string='user';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService){
   }
@@ -52,6 +53,7 @@ login(user: User): Observable<any> {
         console.log('Response token:' + token);
         if (token) {
           this.token = token;
+          this.role = response.role;
           localStorage.setItem('token', this.token);
           return true;
         } else {
@@ -88,7 +90,6 @@ register(user:User): Observable<any> {
 errorHandler(error: HttpErrorResponse): any {
   return throwError(error.error || {message: 'Server Error'});
 }
-
 // readLocalStorageValue(key:any) {
 //   return localStorage.getItem(key);
 // }

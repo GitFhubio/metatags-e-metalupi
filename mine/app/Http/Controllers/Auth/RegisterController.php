@@ -82,7 +82,7 @@ class RegisterController extends Controller
         ]);
         if ($validator->fails()) {
             $message = ['errors' => $validator->errors()];
-            return  Response::json($message, 202);
+            $response= Response::json($message, 202);
         } else {
             $user = new User(array(
                 'email' => trim($request->email),
@@ -90,11 +90,7 @@ class RegisterController extends Controller
                 'password' => bcrypt($request->password),
             ));
             $user->save();
-            $message = 'The user has been created successfully';
-            $response = Response::json([
-                'message' => $message,
-                'user' => $user,
-            ], 201);
+            $response = true;
         }
         return $response;
     }

@@ -1,2 +1,4 @@
 <p>admin-list works!</p>
-<pre>{{users | json}}</pre>
+<ul>
+  <li *ngFor="let user of users">{{user.email}}</li>
+</ul>

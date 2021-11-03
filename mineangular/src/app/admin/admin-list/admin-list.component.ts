@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user';
 })
 export class AdminListComponent implements OnInit {
 users:User[]=[];
-  constructor(private mservice:MainService) {
+  constructor( public mservice:MainService) {
     this.mservice.getUsers()
       .subscribe(res => {
         this.users = res;

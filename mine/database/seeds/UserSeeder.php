@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         $user1->name='Admin';
         $user1->email='admin@outlook.it';
         $user1->password = Hash::make('beinformatica');
+        $user1->role ='admin';
         $user1->save();
 
         $user2=new User();

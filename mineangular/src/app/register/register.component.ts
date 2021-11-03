@@ -43,8 +43,26 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         response  => {
           console.log(response);
-          if (response === true) {
-            this.router.navigate(['/admin']);
+          if (response == 1) {
+// una volta che lo registro lo loggo gia dentro cosi ha token e puo accedere ad area riservata
+            this.authService.login(this.userForm.value)
+            .subscribe(
+              response  => {
+                console.log(response);
+                if (response === true) {
+                  this.router.navigate(['/admin']);
+                } else {
+                  this.status = 'error';
+                  this.message = 'Username or password is incorrect';
+                }
+              },
+              error =>  {
+                console.log(error);
+                this.status = 'error';
+                this.message = error[`message`];
+              }
+            );
+            // this.router.navigate(['/login']); // questo era prima che mettessi login dentro register
           } else {
             this.status = 'error';
             this.message = 'Username or password is incorrect';
