@@ -18,26 +18,33 @@ const routes: Routes = [
     path:'',
     component:HomeComponent
 
-},   { path:'form',
-component:FormComponent
-
 },
-{ path:'update/:id',
-component:UformComponent
+// rendo form creazione e aggiornamento privati
+// { path:'form',
+// component:FormComponent
 
-},
+// },
+// { path:'update/:id',
+// component:UformComponent
+
+// },
+// e pure il logout
+// { path: 'logout',
+// component: LogoutComponent},
+
 { path: 'register',
 component: RegisterComponent},
 { path: 'login',
 component: LoginComponent},
-{ path: 'logout',
-component: LogoutComponent},
+
 
 { path: 'admin',
 component: DashboardComponent,
 children: adminRoutes,
 canActivate: [MainService] //sarebbe stato meglio fare diversi services per ordine ma è uguale
 }
+
+// quelle che sono diventate sotto rotte le levo da qui
 // { path: 'admin',
 // component: HomeAdminComponent,
 // children: adminRoutes}

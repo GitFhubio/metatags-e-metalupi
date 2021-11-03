@@ -1,17 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationStart, Router,Event, NavigationEnd} from '@angular/router';
 import { Observable } from 'rxjs';
 import { MainService } from '../mainservice.service';
 import { Book } from '../models/book.model';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
+    // @Input() token:string|null ='';
   @Input() filteredBooks:Book[] = [];
   // books:Book[] = [];
   constructor(public mservice:MainService,private title:Title, private meta:Meta,private router:Router) {
@@ -26,10 +26,11 @@ export class HomeComponent implements OnInit {
   })
     }
 });
-}
+// console.log(this.mservice.loggedIn());
 
+  }
   ngOnInit(): void {
-
+//  con questa sintassi li ho messi osservabili
     this.mservice.booksFiltered$.subscribe(books=>{
       this.filteredBooks=books;
     })
@@ -37,12 +38,16 @@ export class HomeComponent implements OnInit {
   //     this.filteredBooks=res;
   //     console.log(this.filteredBooks);
   // })
+
+  // ho messo direttamente mservice in html quindi tolgo le due righe successive
+  // this.token=this.mservice.readLocalStorageValue('token');
+  // console.log(this.token);
   }
+
 
   delete(book:Book){
     this.filteredBooks = this.filteredBooks.filter(item => item !== book);
-    this.mservice.deleteBook(book)
-    .subscribe();
+    this.mservice.deleteBook(book).subscribe();
   }
 }
 

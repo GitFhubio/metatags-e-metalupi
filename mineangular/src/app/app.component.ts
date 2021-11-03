@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, Input} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { faGithub,faFacebook, faTwitter,faLinkedin,faInstagram } from '@fortawesome/free-brands-svg-icons';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import { MainService } from './mainservice.service';
 import { Book } from './models/book.model';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterContentChecked{
   title='mineangular';
+  message: string = 'loading :(';
+  // @Input() token : string|null= '';
   filteredBooks:Book[]=[];
   faTwitter = faTwitter;
   faFacebook = faFacebook;
@@ -20,7 +21,7 @@ export class AppComponent {
   faInstagram= faInstagram;
   faLinkedin= faLinkedin;
   faGithub=faGithub;
-  constructor(private _http: HttpClient,public router:Router,public mservice:MainService){
+  constructor(private cdr: ChangeDetectorRef,private _http: HttpClient,public router:Router,public mservice:MainService){
     this.router.events.subscribe((e) => {
     if(e instanceof NavigationEnd){
       window.scrollTo(0,0);
@@ -39,6 +40,11 @@ export class AppComponent {
   })
 
 }
+ngAfterContentChecked() : void {
+  this.cdr.detectChanges();
+}
+
+
  searchBook(title:HTMLInputElement){
 
       this.mservice.filterBook(title.value).subscribe(res => {this.filteredBooks=res;

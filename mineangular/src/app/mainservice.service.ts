@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, Output } from "@angular/core";
 import { Observable, Subject, throwError } from "rxjs";
 import { Book } from "./models/book.model";
 import { User } from "./models/user";
@@ -35,6 +35,12 @@ booksFiltered$= this.books.asObservable();
 newBookList(booksList:Book[]){
 this.books.next(booksList);
 }
+
+private mytoken = new Subject<string>();
+log$= this.mytoken.asObservable();
+session(t:string){
+  this.mytoken.next(t);
+  }
 getUsers() {
   return this.http.get<User[]>(`http://127.0.0.1:8000/api/users`);
 }
@@ -82,5 +88,10 @@ register(user:User): Observable<any> {
 errorHandler(error: HttpErrorResponse): any {
   return throwError(error.error || {message: 'Server Error'});
 }
+
+// readLocalStorageValue(key:any) {
+//   return localStorage.getItem(key);
+// }
+
 }
 
