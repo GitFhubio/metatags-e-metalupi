@@ -47,4 +47,8 @@ public function getJWTCustomClaims()
     return [];
 }
 
+public function books(){
+    return $this->hasMany('App\Book');
+}
+
 }

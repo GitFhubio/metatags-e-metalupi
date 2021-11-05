@@ -20,18 +20,21 @@ class BookSeeder extends Seeder
     //   $book->save();
     // }
      $book1= new Book();
+     $book1->user_id=2;
      $book1->title="La compagnia dei celestini";
     $book1->author="Stefano Benni";
     $book1->price=9.99;
     $book1->save();
 
     $book2= new Book();
+    $book2->user_id=2;
     $book2->title="Il trono di spade";
    $book2->author="G.R.R Martin";
    $book2->price=29.99;
    $book2->save();
 
    $book3= new Book();
+   $book3->user_id=3;
    $book3->title="Il ladro di merendine";
   $book3->author="A.Camilleri";
   $book3->price=12.99;
