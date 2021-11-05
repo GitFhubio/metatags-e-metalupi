@@ -10,7 +10,7 @@ import { Book } from '../models/book.model';
 })
 export class FormComponent {
   form : FormGroup;
-  fileName:string = 'Choose file...';
+  fileName:string = 'Choose file...';  // oppure fileName?:string;
   file: any|null;
   error:boolean = false;
   constructor(private _http: HttpClient,private title:Title, private meta:Meta,public fb: FormBuilder){
