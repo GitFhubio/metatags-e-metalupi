@@ -25,7 +25,7 @@
  <li *ngFor="let book of books">
    {{book.title}}
    <div>
-    <button class="btn btn-warning"><a href="javascript:void(0)" [routerLink]="['/admin/update-book',book.id]">Update</a></button>
+    <button class="btn btn-warning"><a href="javascript:void(0)" [routerLink]="['/admin/update-book',this.mservice.current('id'),book.id]">Update</a></button>
     <button class="btn btn-danger" (click)="delete(book)">Delete</button>
    </div>
 </li>

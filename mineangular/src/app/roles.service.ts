@@ -9,31 +9,21 @@ import { Book } from './models/book.model';
   providedIn: 'root'
 })
 export class RolesService implements CanActivate {
- books = new BehaviorSubject<Book[]>([]);
- mybooks:Book[]=[];
+
   constructor(public mservice:MainService,public router:Router) {
 
-    this.mservice.downloadMyBooks(this.mservice.current('id')).subscribe( (value) => {
-      this.mybooks=value
-    //   this.books.subscribe(res=>
-    //   {
-    //     console.log(res);
-
-    //     }
-    // )
- })
- console.log(this.mservice.downloadBooks());
 
 }
 
   canActivate(route: ActivatedRouteSnapshot): any {
-
-//  if (!this.book_ids.includes(route.params.id)) {
-//   this.router.navigate(['/admin']);
-//   return false
-// }
-  return true
-
+   if (route.data.roles == this.mservice.current('role')){
+     if (this.mservice.current('id') ==route.params.idU) {
+      return true;
+}
+} else{
+  this.router.navigate(['/admin']);
+  return false;
+}
 
 }
 }

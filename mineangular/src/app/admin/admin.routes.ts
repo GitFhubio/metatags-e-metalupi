@@ -17,8 +17,8 @@ export const adminRoutes: Routes = [
   canActivate:[AuthGuardService],
   data: { roles: [Role.User] }},
 
-  {path: 'update-book/:id', component:UformComponent,
-   canActivate:[AuthGuardService],
+  {path: 'update-book/:idU/:id', component:UformComponent,
+   canActivate:[RolesService],
   data: { roles: [Role.User]}},
 
   {path: 'logout', component:LogoutComponent},
