@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { AuthGuardService } from 'src/app/auth-guard.service';
 import { MainService } from 'src/app/mainservice.service';
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-home-admin',
@@ -9,10 +10,22 @@ import { MainService } from 'src/app/mainservice.service';
   styleUrls: ['./home-admin.component.scss']
 })
 export class HomeAdminComponent implements OnInit {
+  books:Book[]=[];
+  constructor(public mservice:MainService) {
+    this.mservice.downloadBooks().subscribe(res=>{
+      this.books=res;
 
-  constructor(public mservice:MainService) { }
+  })
+}
+ngOnInit(): void {
 
-  ngOnInit(): void {
-  }
+}
+delete(book:Book){
+  this.books = this.books.filter(item => item !== book);
+  this.mservice.deleteBook(book).subscribe();
+}
+getBookId(input:number) : string{
+  return input.toString();
+}
 
 }

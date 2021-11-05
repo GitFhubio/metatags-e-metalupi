@@ -12,6 +12,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class MainService{
   token: string='';
   role: string='user';
+  authId : number = 0;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService){
   }
@@ -53,8 +54,9 @@ login(user: User): Observable<any> {
         console.log('Response token:' + token);
         if (token) {
           this.token = token;
-          this.role = response.role;
           localStorage.setItem('token', this.token);
+          localStorage.setItem('role',response.role);
+          localStorage.setItem('id',response.id);
           return true;
         } else {
           return false;
@@ -67,6 +69,8 @@ login(user: User): Observable<any> {
 logout(): void {
   this.token ='';
   localStorage.removeItem('token');
+  localStorage.removeItem('role');
+  localStorage.removeItem('id');
   console.log('you are logged out!');
   this.router.navigate(['/']);
 }
@@ -93,6 +97,8 @@ errorHandler(error: HttpErrorResponse): any {
 // readLocalStorageValue(key:any) {
 //   return localStorage.getItem(key);
 // }
-
+current(key:any) {
+  return localStorage.getItem(key);
+}
 }
 

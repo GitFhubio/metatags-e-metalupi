@@ -31,7 +31,7 @@ export function tokenGetter(): any {
     DashboardComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

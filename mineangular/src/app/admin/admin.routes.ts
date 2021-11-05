@@ -12,9 +12,13 @@ export const adminRoutes: Routes = [
   {path: 'users', component: AdminListComponent,
   canActivate:[AuthGuardService],
   data: { roles: [Role.Admin] }},
-  {path: 'create-book', component:FormComponent},
+  {path: 'create-book', component:FormComponent,
+  canActivate:[AuthGuardService],
+  data: { roles: [Role.User] }},
 
-  {path: 'update-book/:id', component:UformComponent},
+  {path: 'update-book/:id', component:UformComponent,
+   canActivate:[AuthGuardService],
+  data: { roles: [Role.User] }},
 
   {path: 'logout', component:LogoutComponent},
 ];

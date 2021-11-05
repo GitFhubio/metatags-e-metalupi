@@ -11,7 +11,8 @@
         <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" [ngStyle]="{'background-image': book.img!= null ? 'url(http://localhost:8000/'+book.img+')' : 'url(https://i.redd.it/qm5q37j0ba931.png)'}">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
             <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{book.title}}</h2>
-            <ul *ngIf="mservice.loggedIn()" class="d-flex list-unstyled mt-auto">
+            <!-- *ngIf="mservice.loggedIn()" //prima stava in ul -->
+            <!-- <ul class="d-flex list-unstyled mt-auto">
               <li class="me-auto">
                 <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
               </li>
@@ -21,7 +22,7 @@
               <li class="d-flex align-items-center">
                 <button class="btn btn-danger" (click)="delete(book)">Delete</button>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>

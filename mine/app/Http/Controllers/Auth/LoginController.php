@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\User;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -59,6 +61,8 @@ class LoginController extends Controller
        default:
        $role='user';
     }
+
+    // $currentId=User::where('email',$request->email)->first()->id; // o Auth id che già ho a sto punto
     if ($validator->fails()) {
         $message = ['errors' => $validator->errors()];
                 return  Response::json($message, 202);
@@ -68,7 +72,7 @@ class LoginController extends Controller
             $token = JWTAuth::attempt($credentials);
             if ($token) {
                 $message = ['success' => $token];
-                return Response::json(["token" => $token, "role"=>$role], 200);
+                return Response::json(["token" => $token, "role"=>$role, "id"=>Auth::id()], 200);
             } else {
                 $message = ['errors' => "Invalid credentials"];
                 return  Response::json($message, 202);

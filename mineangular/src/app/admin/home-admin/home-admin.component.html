@@ -8,9 +8,9 @@
             <h4 class="list-group-item-heading"><span class="fa fa-user"></span> Manage User</h4>
           </div> -->
           <div class="row-content">
-            <a *ngIf="this.mservice.role == 'admin'" [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
-            <a [routerLink]="['/admin/create-book']"><button class="btn btn-danger">Inserisci nuovo libro</button></a>
-            <a [routerLink]="['/']"><button class="btn btn-danger">Vai alla lista libri</button></a>
+            <a *ngIf="this.mservice.current('role') == 'admin'" [routerLink]="['/admin/users']"><button class="btn btn-danger">Tutti gli utenti</button></a>
+            <a *ngIf="this.mservice.current('role') == 'user'" [routerLink]="['/admin/create-book']"><button class="btn btn-danger">Inserisci nuovo libro</button></a>
+            <!-- <a [routerLink]="['/']"><button class="btn btn-danger">Vai alla lista libri</button></a> -->
             <!-- <a [routerLink]="['/admin/users/create']" class="btn btn-primary">New User</a> -->
           </div>
         </div>
@@ -18,3 +18,26 @@
     </div>
   </div>
 </div>
+
+<ul *ngIf="this.mservice.role == 'user'">
+  <ng-container *ngFor="let book of books">
+ <li  *ngIf="this.mservice.current('id') == getBookId(book.user_id)" >
+   {{book.title}}
+   <div>
+    <button class="btn btn-warning"><a href="javascript:void(0)" [routerLink]="['/admin/update-book',book.id]">Update</a></button>
+    <button class="btn btn-danger" (click)="delete(book)">Delete</button>
+   </div>
+</li>
+</ng-container>
+</ul>
+<!-- <ul class="d-flex list-unstyled mt-auto">
+  <li class="me-auto">
+    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+  </li>
+  <li class="d-flex align-items-center me-3">
+    <button class="btn btn-warning"><a href="javascript:void(0)" [routerLink]="['/admin/update-book',book.id]">Update</a></button>
+  </li>
+  <li class="d-flex align-items-center">
+    <button class="btn btn-danger" (click)="delete(book)">Delete</button>
+  </li>
+</ul> -->

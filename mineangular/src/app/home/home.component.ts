@@ -45,10 +45,10 @@ export class HomeComponent implements OnInit{
   }
 
 
-  delete(book:Book){
-    this.filteredBooks = this.filteredBooks.filter(item => item !== book);
-    this.mservice.deleteBook(book).subscribe();
-  }
+  // delete(book:Book){
+  //   this.filteredBooks = this.filteredBooks.filter(item => item !== book);
+  //   this.mservice.deleteBook(book).subscribe();
+  // }
 }
 
 

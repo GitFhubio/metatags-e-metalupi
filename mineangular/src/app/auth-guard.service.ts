@@ -12,7 +12,8 @@ export class AuthGuardService {
 }
 
 canActivate(route: ActivatedRouteSnapshot): any {
-  if (route.data.roles != this.mservice.role) {
+  if (route.data.roles != this.mservice.current('role')) {
+    this.router.navigate(['/admin']);
     return false;
   }
   return true;
