@@ -12,9 +12,8 @@ import { Book } from 'src/app/models/book.model';
 export class HomeAdminComponent implements OnInit {
   books:Book[]=[];
   constructor(public mservice:MainService) {
-    this.mservice.downloadBooks().subscribe(res=>{
+    this.mservice.downloadMyBooks(this.mservice.current('id')).subscribe(res=>{
       this.books=res;
-
   })
 }
 ngOnInit(): void {

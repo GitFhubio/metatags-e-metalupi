@@ -4,12 +4,12 @@ import { Observable, Subject, throwError } from "rxjs";
 import { Book } from "./models/book.model";
 import { User } from "./models/user";
 import { catchError, map } from 'rxjs/operators';
-import { Router } from "@angular/router";
+import { CanActivate, Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 @Injectable({
   providedIn:'root'
 })
-export class MainService{
+export class MainService implements CanActivate{
   token: string='';
   role: string='user';
   authId : number = 0;
@@ -19,6 +19,9 @@ export class MainService{
   // router e jwthelper nel costruttore li ho messi per canactivate e loggedin
   downloadBooks() {
     return this.http.get<Book[]>('http://127.0.0.1:8000/api/bookz');
+}
+downloadMyBooks(id:string|null) {
+  return this.http.get<Book[]>('http://127.0.0.1:8000/api/my-books/'+id);
 }
 downloadBook(id:string|null) {
   return this.http.get<Book>('http://127.0.0.1:8000/api/bookz/'+id);

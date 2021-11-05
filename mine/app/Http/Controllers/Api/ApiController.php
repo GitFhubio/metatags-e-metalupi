@@ -12,4 +12,8 @@ class ApiController extends Controller
         $books = Book::where('title','like', '%'.$title.'%')->get();
         return response()->json($books);
     }
+    public function ownBooks($userId = null){
+            $books = Book::where('user_id', $userId)->get();
+        return response()->json($books);
+    }
 }

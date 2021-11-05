@@ -6,6 +6,7 @@ import { UformComponent } from '../uform/uform.component';
 import { LogoutComponent } from '../logout/logout.component';
 import { Role } from '../models/user';
 import { AuthGuardService } from '../auth-guard.service';
+import { RolesService } from '../roles.service';
 export const adminRoutes: Routes = [
   { path: '', component: HomeAdminComponent},
   // { path: 'admin', component: HomeAdminComponent},
@@ -18,7 +19,7 @@ export const adminRoutes: Routes = [
 
   {path: 'update-book/:id', component:UformComponent,
    canActivate:[AuthGuardService],
-  data: { roles: [Role.User] }},
+  data: { roles: [Role.User]}},
 
   {path: 'logout', component:LogoutComponent},
 ];

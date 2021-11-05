@@ -20,15 +20,16 @@
 </div>
 
 <ul *ngIf="this.mservice.role == 'user'">
-  <ng-container *ngFor="let book of books">
- <li  *ngIf="this.mservice.current('id') == getBookId(book.user_id)" >
+  <!-- <ng-container *ngFor="let book of books"> -->
+    <!-- *ngIf="this.mservice.current('id') == getBookId(book.user_id)"  ora con api non serve piu -->
+ <li *ngFor="let book of books">
    {{book.title}}
    <div>
     <button class="btn btn-warning"><a href="javascript:void(0)" [routerLink]="['/admin/update-book',book.id]">Update</a></button>
     <button class="btn btn-danger" (click)="delete(book)">Delete</button>
    </div>
 </li>
-</ng-container>
+<!-- </ng-container> -->
 </ul>
 <!-- <ul class="d-flex list-unstyled mt-auto">
   <li class="me-auto">
