@@ -8,7 +8,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li  *ngIf="router.url != '/'"  class="nav-item">
             <a class="nav-link active" aria-current="page" href="javascript:void(0)" [routerLink]="['/']">Home</a>
           </li>
           <!-- <li class="nav-item">
@@ -26,7 +26,8 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex">
+        <form class="d-flex" *ngIf="router.url == '/'">
+z
           <input class="form-control me-2" type="search" #bookTitle placeholder="Search" aria-label="Search">
           <button (click)="searchBook(bookTitle)" class="btn btn-outline-success searchButton" type="submit">Search</button>
         </form>
@@ -44,7 +45,7 @@
       </div>
       <ng-template #logged >
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin']"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Dashboard</button></a>
+          <a  *ngIf="router.url != '/admin'" class="nav-link" href="javascript:void(0)" [routerLink]="['/admin']"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Dashboard</button></a>
         <a class="nav-link" href="javascript:void(0)" [routerLink]="['/admin/logout']"><button type="button" class="btn btn-success btn-lg px-4">Disconnettiti</button></a>
         </div>
       </ng-template>
