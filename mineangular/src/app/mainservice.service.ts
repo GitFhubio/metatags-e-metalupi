@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { Injectable, Output } from "@angular/core";
+import { Injectable} from "@angular/core";
 import { Observable, Subject, throwError } from "rxjs";
 import { Book } from "./models/book.model";
 import { User } from "./models/user";
@@ -10,8 +10,8 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   providedIn:'root'
 })
 export class MainService implements CanActivate{
-  token: string='';
-  role: string='user';
+  // token: string='';
+  // role: string='user';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService){
   }
@@ -40,11 +40,11 @@ newBookList(booksList:Book[]){
 this.books.next(booksList);
 }
 
-private mytoken = new Subject<string>();
-log$= this.mytoken.asObservable();
-session(t:string){
-  this.mytoken.next(t);
-  }
+// private mytoken = new Subject<string>();
+// log$= this.mytoken.asObservable();
+// session(t:string){
+//   this.mytoken.next(t);
+//   }
 getUsers() {
   return this.http.get<User[]>(`http://127.0.0.1:8000/api/users`);
 }
@@ -55,8 +55,8 @@ login(user: User): Observable<any> {
         const token = response.token;
         console.log('Response token:' + response.token);
         if (token) {
-          this.token = token;
-          localStorage.setItem('token', this.token);
+          // this.token = token;
+          localStorage.setItem('token',response.token);
           localStorage.setItem('role',response.role);
           localStorage.setItem('id',response.id);
           return true;
@@ -69,7 +69,7 @@ login(user: User): Observable<any> {
     );
 }
 logout(): void {
-  this.token ='';
+  // this.token ='';
   localStorage.removeItem('token');
   localStorage.removeItem('role');
   localStorage.removeItem('id');

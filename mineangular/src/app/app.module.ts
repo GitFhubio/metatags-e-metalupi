@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component'; //questo deve essere i
 import { JwtModule } from '@auth0/angular-jwt';
 import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
+import { Page404Component } from './page404/page404.component';
 
 export function tokenGetter(): any {
   return localStorage.getItem('token');
@@ -32,6 +33,7 @@ export function tokenGetter(): any {
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
+    Page404Component,
   ],
   imports: [
     BrowserModule,

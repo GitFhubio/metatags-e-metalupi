@@ -23,8 +23,8 @@ delete(book:Book){
   this.books = this.books.filter(item => item !== book);
   this.mservice.deleteBook(book).subscribe();
 }
-getBookId(input:number) : string{
-  return input.toString();
-}
+// getBookId(input:number) : string{
+//   return input.toString();
+// }
 
 }
