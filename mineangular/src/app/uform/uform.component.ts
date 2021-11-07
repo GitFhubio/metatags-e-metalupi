@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MainService } from '../mainservice.service';
 import { Book } from '../models/book.model';
 
@@ -19,7 +19,7 @@ export class UformComponent implements OnInit {
   updatingId:string|null='';
   book:Book=new Book();
   // private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  constructor(public route:ActivatedRoute, public mservice:MainService,
+  constructor(public route:ActivatedRoute, public mservice:MainService,public router:Router,
     private _http: HttpClient,private title:Title, private meta:Meta,public fb: FormBuilder) {
     this.title.setTitle("Updating form");
     this.meta.updateTag({name:'description',content:"questa è la pagina di update"});
@@ -67,9 +67,9 @@ onSubmit(){
   formData.append('_method', 'PUT');
   if (this.form.valid){
     this.error=false;
+    this.router.navigate(['/admin']);
   return this._http.post('http://127.0.0.1:8000/api/bookz/'+this.updatingId,formData).subscribe((res)=>console.log(res),
   (err) => console.log(err));
-
 } else{
    this.error=true;
   return;

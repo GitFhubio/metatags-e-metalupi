@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { Book } from '../models/book.model';
+import { Router } from '@angular/router';
+import { MainService } from '../mainservice.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -13,7 +14,7 @@ export class FormComponent {
   fileName:string = 'Choose file...';  // oppure fileName?:string;
   file: any|null;
   error:boolean = false;
-  constructor(private _http: HttpClient,private title:Title, private meta:Meta,public fb: FormBuilder){
+  constructor(private _http: HttpClient,private title:Title, private meta:Meta,public fb: FormBuilder,public router:Router,public mservice:MainService){
     this.title.setTitle("Creation form");
     this.meta.updateTag({name:'description',content:"questa è la pagina di creazione"});
     this.meta.updateTag({name:'keywords',content:"create,insert,new"});
@@ -36,11 +37,13 @@ onSubmit(){
   const formData: FormData = new FormData();
   console.log(this.file);
   formData.append('myform',JSON.stringify(this.form.value));
+  formData.append('id',this.mservice.current('id') as string);
   if(this.file!= null){
   formData.append('image', this.file,this.fileName);
   }
   if (this.form.valid){
     this.error=false;
+    this.router.navigate(['/admin']);
   return this._http.post('http://127.0.0.1:8000/api/bookz',formData).subscribe((res)=>console.log(res),
   (err) => console.log(err));
 

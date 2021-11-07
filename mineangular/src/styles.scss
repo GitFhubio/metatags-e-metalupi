@@ -16,7 +16,7 @@
     .navbar-toggler{
     color:#fff;
     }
-    .searchButton{
+    .searchButton, .backAllButton{
       margin-top:0;
       // &:hover{
 
@@ -61,4 +61,12 @@ form{
     margin-top:10px;
   }
 }
+}
+
+a{
+  text-decoration: none;
+  color:#fff;
+  &:hover{
+    color:#fff;
+  }
 }

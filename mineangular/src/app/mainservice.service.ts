@@ -12,7 +12,6 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class MainService implements CanActivate{
   token: string='';
   role: string='user';
-  authId : number = 0;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(public http:HttpClient,private router: Router,public jwtHelper: JwtHelperService){
   }
@@ -54,7 +53,7 @@ login(user: User): Observable<any> {
     .pipe(
       map((response: any) => {
         const token = response.token;
-        console.log('Response token:' + token);
+        console.log('Response token:' + response.token);
         if (token) {
           this.token = token;
           localStorage.setItem('token', this.token);

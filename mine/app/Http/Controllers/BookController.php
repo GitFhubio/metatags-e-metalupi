@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -42,6 +43,7 @@ class BookController extends Controller
         $book->title=json_decode($data['myform'],true)['title'];
         $book->author=json_decode($data['myform'],true)['author'];
         $book->price=json_decode($data['myform'],true)['price'];
+        $book->user_id=$data['id'];
         if($request->file('image')){
             $book->img = $request->file('image')->store('images');
         }

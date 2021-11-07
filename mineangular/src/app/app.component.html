@@ -27,9 +27,9 @@
           </li>
         </ul>
         <form class="d-flex" *ngIf="router.url == '/'">
-z
           <input class="form-control me-2" type="search" #bookTitle placeholder="Search" aria-label="Search">
           <button (click)="searchBook(bookTitle)" class="btn btn-outline-success searchButton" type="submit">Search</button>
+          <button *ngIf="onSearch" (click)="allBooks()" class="btn btn-outline-danger backAllButton" type="submit">Back to all books</button>
         </form>
       </div>
     </div>

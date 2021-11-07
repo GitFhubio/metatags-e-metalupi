@@ -12,6 +12,7 @@ import { Book } from './models/book.model';
 })
 export class AppComponent implements AfterContentChecked{
   title='mineangular';
+  onSearch:boolean= false;
   message: string = 'loading :(';
   // @Input() token : string|null= '';
   filteredBooks:Book[]=[];
@@ -28,25 +29,30 @@ export class AppComponent implements AfterContentChecked{
     }
     }
     )
-        this.mservice.downloadBooks().subscribe(res=>{
-      this.filteredBooks=res;
-      console.log(this.filteredBooks);
-        this.mservice.booksFiltered$.subscribe(books=>{
-    this.filteredBooks=books;
-    console.log(this.filteredBooks);
-  })
-  this.mservice.newBookList(this.filteredBooks);
-  //         console.log(this.filteredBooks);
-  })
-
+  this.allBooks();
 }
 ngAfterContentChecked() : void {
   this.cdr.detectChanges();
 }
 
+allBooks(){
+  this.onSearch=false;
+  this.mservice.downloadBooks().subscribe(res=>{
+    this.filteredBooks=res;
+    console.log(this.filteredBooks);
+      this.mservice.booksFiltered$.subscribe(books=>{
+  this.filteredBooks=books;
+  console.log(this.filteredBooks);
+})
+this.mservice.newBookList(this.filteredBooks);
+//         console.log(this.filteredBooks);
+})
+
+}
 
  searchBook(title:HTMLInputElement){
-
+   if(title.value!= ''){
+ this.onSearch=true;
       this.mservice.filterBook(title.value).subscribe(res => {this.filteredBooks=res;
         console.log(this.filteredBooks);
 
@@ -59,5 +65,6 @@ ngAfterContentChecked() : void {
       });
 
   }
+}
 
  }
