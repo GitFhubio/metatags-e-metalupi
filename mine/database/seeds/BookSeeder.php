@@ -24,6 +24,7 @@ class BookSeeder extends Seeder
      $book1->title="La compagnia dei celestini";
     $book1->author="Stefano Benni";
     $book1->price=9.99;
+    $book1->img="images/f5TTwD5HFt36Rb1zsMhm3lNVGPzBuLDa2GQPo6tD.jpg";
     $book1->save();
 
     $book2= new Book();
@@ -31,6 +32,7 @@ class BookSeeder extends Seeder
     $book2->title="Il trono di spade";
    $book2->author="G.R.R Martin";
    $book2->price=29.99;
+   $book2->img="images/0gplJIpjmFyStrPXsHCufE4ReKEhJ09u23s0uXUO.jpg";
    $book2->save();
 
    $book3= new Book();
@@ -38,6 +40,7 @@ class BookSeeder extends Seeder
    $book3->title="Il ladro di merendine";
   $book3->author="A.Camilleri";
   $book3->price=12.99;
+  $book3->img="images/OAPxLRnujvUPDJYxGHXEJTJXpUpN97avQe6SigOn.jpg";
   $book3->save();
     }
 }
